@@ -1,0 +1,4 @@
+1.367
+perl(IO::Pipely)
+perl(IO::Tty)
+perl(POE::Test::Loops)
