@@ -4,12 +4,16 @@
 #
 Name     : perl-POE
 Version  : 1.367
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/R/RC/RCAPUTO/POE-1.367.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RC/RCAPUTO/POE-1.367.tar.gz
 Summary  : 'Portable, event-loop agnostic eventy networking and multitasking.'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
+Requires: perl(Curses)
+Requires: perl(IO::Pipely)
+Requires: perl(IO::Tty)
+Requires: perl(POE::Test::Loops)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(IO::Pipely)
 BuildRequires : perl(IO::Tty)
