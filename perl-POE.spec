@@ -4,16 +4,18 @@
 #
 Name     : perl-POE
 Version  : 1.367
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/R/RC/RCAPUTO/POE-1.367.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RC/RCAPUTO/POE-1.367.tar.gz
 Summary  : 'Portable, event-loop agnostic eventy networking and multitasking.'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
+Requires: perl-POE-perl = %{version}-%{release}
 Requires: perl(Curses)
 Requires: perl(IO::Pipely)
 Requires: perl(IO::Tty)
 Requires: perl(POE::Test::Loops)
+Requires: perl(Term::ReadKey)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(IO::Pipely)
 BuildRequires : perl(IO::Tty)
@@ -36,8 +38,18 @@ Requires: perl-POE = %{version}-%{release}
 dev components for the perl-POE package.
 
 
+%package perl
+Summary: perl components for the perl-POE package.
+Group: Default
+Requires: perl-POE = %{version}-%{release}
+
+%description perl
+perl components for the perl-POE package.
+
+
 %prep
 %setup -q -n POE-1.367
+cd %{_builddir}/POE-1.367
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -73,53 +85,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/POE.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Component.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Component/Client/TCP.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Component/Server/TCP.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Driver.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Driver/SysRW.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Block.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Grep.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/HTTPD.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Line.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Map.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/RecordBlock.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Reference.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Stackable.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Stream.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Kernel.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop/IO_Poll.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop/PerlSignals.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop/Select.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/NFA.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Pipe.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Pipe/OneWay.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Pipe/TwoWay.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Queue.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Queue/Array.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Aliases.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Clock.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Events.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Extrefs.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/FileHandles.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/SIDs.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Sessions.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Signals.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Resources.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Session.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Test/Sequence.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/Curses.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/FollowTail.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/ListenAccept.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/ReadLine.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/ReadWrite.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/Run.pm
-/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/SocketFactory.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -170,3 +135,53 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/POE::Wheel::ReadWrite.3
 /usr/share/man/man3/POE::Wheel::Run.3
 /usr/share/man/man3/POE::Wheel::SocketFactory.3
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.28.2/POE.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Component.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Component/Client/TCP.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Component/Server/TCP.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Driver.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Driver/SysRW.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Block.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Grep.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/HTTPD.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Line.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Map.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/RecordBlock.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Reference.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Stackable.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Filter/Stream.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Kernel.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop/IO_Poll.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop/PerlSignals.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Loop/Select.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/NFA.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Pipe.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Pipe/OneWay.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Pipe/TwoWay.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Queue.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Queue/Array.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Aliases.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Clock.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Events.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Extrefs.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/FileHandles.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/SIDs.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Sessions.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resource/Signals.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Resources.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Session.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Test/Sequence.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/Curses.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/FollowTail.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/ListenAccept.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/ReadLine.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/ReadWrite.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/Run.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POE/Wheel/SocketFactory.pm
