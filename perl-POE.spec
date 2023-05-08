@@ -4,7 +4,7 @@
 #
 Name     : perl-POE
 Version  : 1.370
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/POE-1.370.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/POE-1.370.tar.gz
 Summary  : 'Portable, event-loop agnostic eventy networking and multitasking.'
